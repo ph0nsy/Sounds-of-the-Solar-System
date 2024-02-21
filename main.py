@@ -8,12 +8,11 @@ from js import todayIs, console
 #!pip install pyscript
 from pyscript import document
 
-date = "2024-02-21" #todayIs
+date = todayIs #"2024-02-21"
 
 planets = []
 for i, nasaid in enumerate([1, 2, 3, 4, 5, 6, 7, 8]):  # The 1st, 2nd, 3rd (etc) planet in solar system
     obj = Horizons(id=nasaid, location="@sun", epochs=Time(date).jd).vectors()
-    console.log(obj)
     planets.append([np.double(obj[xi]) for xi in ['x', 'y', 'z']])
 
 planets = [coord[:2] for coord in planets]
