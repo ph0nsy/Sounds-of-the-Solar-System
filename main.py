@@ -8,7 +8,7 @@ from js import todayIs, console
 #!pip install pyscript
 from pyscript import document
 
-date = todayIs #"2024-02-21"
+date = "2024-02-21" #todayIs 
 
 planets = []
 for i, nasaid in enumerate([1, 2, 3, 4, 5, 6, 7, 8]):  # The 1st, 2nd, 3rd (etc) planet in solar system
