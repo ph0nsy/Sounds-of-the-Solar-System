@@ -3,7 +3,7 @@ import numpy as np
 #!pip install astropy
 from astropy.time import Time
 #!pip install astroquery
-#from astroquery.jplhorizons import Horizons
+from astroquery.jplhorizons import Horizons
 from datetime import date
 
 print(date.today())

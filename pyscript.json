@@ -1,3 +1,3 @@
 {
-    "packages": ["numpy", "astropy"]
+    "packages": ["numpy", "astropy", "astroquery"]
 }
