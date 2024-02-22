@@ -40,10 +40,10 @@
       from astroquery.jplhorizons import Horizons
       from datetime import date
 
-      print(date.today())
+      print(date.today().strftime())
       planets = []
       for i, nasaid in enumerate([1, 2, 3, 4, 5, 6, 7, 8]):  # The 1st, 2nd, 3rd (etc) planet in solar system
-          obj = Horizons(id=nasaid, location="@sun", epochs=Time(date.today()).jd)
+          obj = Horizons(id=nasaid, location="@sun", epochs=Time(date.today().strftime()).jd)
       #    planets.append([np.double(obj.vectors()[xi]) for xi in ['x', 'y']])
 
       #planets = [coord[:2] for coord in planets]
