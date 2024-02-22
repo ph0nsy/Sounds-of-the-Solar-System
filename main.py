@@ -4,14 +4,15 @@ import numpy as np
 from astropy.time import Time
 #!pip install astroquery
 from astroquery.jplhorizons import Horizons
-from js import todayIs, console
-#!pip install pyscript
-from pyscript import document
 #!pip install datetime
 from datetime import datetime
+#!pip install pyscript
+from js import console
+from pyscript import document
 
 fmt = "%Y-%m-%d"
-date = f"{datetime.now():{fmt}}" #"2024-02-21" #todayIs 
+date = f"{datetime.now():{fmt}}" #"2024-02-21" 
+console.log(date)
 
 planets = []
 for i, nasaid in enumerate([1, 2, 3, 4, 5, 6, 7, 8]):  # The 1st, 2nd, 3rd (etc) planet in solar system
