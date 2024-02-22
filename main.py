@@ -5,13 +5,12 @@ from astropy.time import Time
 #!pip install astroquery
 from astroquery.jplhorizons import Horizons
 #!pip install datetime
-from datetime import datetime
+from datetime import date
 #!pip install pyscript
 from js import console
 from pyscript import document
 
-fmt = "%Y-%m-%d"
-date = f"{datetime.now():{fmt}}" #"2024-02-21" 
+date = date.today() 
 console.log(date)
 
 planets = []
