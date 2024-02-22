@@ -35,10 +35,6 @@
       "packages" = ["numpy", "astropy", "astroquery", "certifi"]
     </py-config>
     <py-script>
-      import numpy as np
-      from astropy.time import Time
-      from astroquery.jplhorizons import Horizons
-      from datetime import date
       import urllib3
       import certifi
       
@@ -46,6 +42,12 @@
           cert_reqs="CERT_REQUIRED",
           ca_certs=certifi.where()
       )
+    </py-script>
+    <py-script>
+      import numpy as np
+      from astropy.time import Time
+      from astroquery.jplhorizons import Horizons
+      from datetime import date
 
       print(date.today().strftime('%Y-%m-%d'))
       planets = []
