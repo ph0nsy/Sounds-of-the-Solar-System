@@ -3,9 +3,10 @@ import numpy as np
 #!pip install astropy
 from astropy.time import Time
 #!pip install astroquery
-from astroquery.jplhorizons import Horizons
+#from astroquery.jplhorizons import Horizons
 from datetime import date
 
+print(date.today())
 planets = []
 for i, nasaid in enumerate([1, 2, 3, 4, 5, 6, 7, 8]):  # The 1st, 2nd, 3rd (etc) planet in solar system
     obj = await Horizons(id=nasaid, location="@sun", epochs=Time(date.today()).jd)
