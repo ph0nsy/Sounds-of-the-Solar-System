@@ -7,15 +7,18 @@ from astroquery.jplhorizons import Horizons
 from js import todayIs, console
 #!pip install pyscript
 from pyscript import document
+#!pip install datetime
+from datetime import datetime
 
-date = "2024-02-21" #todayIs 
+fmt = "%Y-%m-%d"
+date = f"{datetime.now():{fmt}}" #"2024-02-21" #todayIs 
 
 planets = []
 for i, nasaid in enumerate([1, 2, 3, 4, 5, 6, 7, 8]):  # The 1st, 2nd, 3rd (etc) planet in solar system
-    obj = Horizons(id=nasaid, location="@sun", epochs=Time(date).jd).vectors()
-    planets.append([np.double(obj[xi]) for xi in ['x', 'y', 'z']])
+    obj = await Horizons(id=nasaid, location="@sun", epochs=Time(date).jd)
+    planets.append([np.double(obj.vectors()[xi]) for xi in ['x', 'y']])
 
-planets = [coord[:2] for coord in planets]
+#planets = [coord[:2] for coord in planets]
 planets = np.array(planets)
 planets = planets/planets.max() # normalized planets
 console.log(planets)
