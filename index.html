@@ -228,6 +228,15 @@
       <script src="./scripts/canvas.js"></script>
 
       <script>
+         const notes = [[16.35, 32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186], // C_n (Mercury)
+                  [18.35, 36.71, 73.42, 146.8, 293.7, 587.3, 1175, 2349, 4699], // D_n (Venus)
+                  [20.60, 41.20, 82.41, 164.8, 329.6, 659.3, 1319, 2637, 5274], // E_n (Earth)
+                  [21.83, 43.65, 87.31, 174.6, 349.2, 698.5, 1397, 2794, 5588], // F_n (Mars)
+                  [24.50, 49.00, 98.00, 196.0, 392.0, 784.0, 1568, 3136, 6272], // G_n (Jupiter)
+                  [27.50, 55.00, 110.0, 220.0, 440.0, 880.0, 1760, 3520, 7040], // A_n (Saturn)
+                  [30.87, 61.74, 123.5, 246.9, 493.9, 987.8, 1976, 3951, 7902], // B_n (Uranus)
+                  [32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186, 16.35]] // C_n+1 (Neptune)
+
          let planetsData;
           $.ajax({
              type: "Get",
@@ -235,14 +244,18 @@
              dataType: "json",
              success: function(data) {
              planetsData = data;
+             const planetsId = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]; 
+         
+            for(var i = 0; i < planetsId.length; i++){     
+               console.log(planetsId[i]);    
+               document.getElementById(planetsId[i]).innerHTML = notes[i][planetsData[formatedToday][i]] + " Hz";
+            }
              },
              error: function(){
                 console.log("json not found");
              }
           });
           
-          while(planetsData === "undefined"){ console.log("Wait until load.")}
-
          const today = new Date();
           const formatedToday = today.getFullYear() + '-' + (today.getMonth() < 9 ? '0' + (today.getMonth() + 1): (today.getMonth() + 1)) + '-' + (today.getDate() < 10 ? '0' + today.getDate(): today.getDate());
           var context=new AudioContext();
@@ -261,20 +274,6 @@
           },100)
              
           }
-           
-          const notes = [[16.35, 32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186], // C_n (Mercury)
-                   [18.35, 36.71, 73.42, 146.8, 293.7, 587.3, 1175, 2349, 4699], // D_n (Venus)
-                   [20.60, 41.20, 82.41, 164.8, 329.6, 659.3, 1319, 2637, 5274], // E_n (Earth)
-                   [21.83, 43.65, 87.31, 174.6, 349.2, 698.5, 1397, 2794, 5588], // F_n (Mars)
-                   [24.50, 49.00, 98.00, 196.0, 392.0, 784.0, 1568, 3136, 6272], // G_n (Jupiter)
-                   [27.50, 55.00, 110.0, 220.0, 440.0, 880.0, 1760, 3520, 7040], // A_n (Saturn)
-                   [30.87, 61.74, 123.5, 246.9, 493.9, 987.8, 1976, 3951, 7902], // B_n (Uranus)
-                   [32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186, 16.35]] // C_n+1 (Neptune)
-
-         const planetsId = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]; 
-         for(var i = 0; i < planetsId.length; i++){         
-            document.getElementById(planetsId[i]).innerHTML = notes[i][planetsData[formatedToday][i]] + " Hz";
-         }
 
           function playPlanet(planetIdx){
              playNote(notes[planetIdx][planetsData[formatedToday][planetIdx]], 'sine');
