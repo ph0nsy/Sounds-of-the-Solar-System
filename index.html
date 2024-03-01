@@ -94,7 +94,7 @@
                   }
                }
              }
-             averageNote = (times.reduce((a, b) => a + b, 0) / times.length) || 0;
+             averageNote = (noteDifferences.reduce((a, b) => a + b, 0) / noteDifferences.length) || 0;
              console.log(averageNote);
              playNote(averageNote, 'sine'); // Play average tone
           }
