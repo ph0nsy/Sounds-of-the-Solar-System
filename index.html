@@ -270,8 +270,18 @@
                    [27.50, 55.00, 110.0, 220.0, 440.0, 880.0, 1760, 3520, 7040], // A_n (Saturn)
                    [30.87, 61.74, 123.5, 246.9, 493.9, 987.8, 1976, 3951, 7902], // B_n (Uranus)
                    [32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186, 16.35]] // C_n+1 (Neptune)
+
+         const planetsId = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]; 
+         for(var i = 0; i < planetsId.length; i++){         
+            document.getElementById(planetsId[i]).innerHTML = notes[i][planetsData[formatedToday][i]] + " Hz";
+         }
+
+          function playPlanet(planetIdx){
+             playNote(notes[planetIdx][planetsData[formatedToday][planetIdx]], 'sine');
+          }
          
-          const notesToday = [
+          function playAllPlanets(){
+            const notesToday = [
             notes[0][planetsData[formatedToday][0]],
             notes[1][planetsData[formatedToday][1]],
             notes[2][planetsData[formatedToday][2]],
@@ -281,17 +291,6 @@
             notes[6][planetsData[formatedToday][6]],
             notes[7][planetsData[formatedToday][7]]
             ]
-
-         const planetsId = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]; 
-         for(var i = 0; i < notesToday.length; i++){         
-            document.getElementById(planetsId[i]).innerHTML = notesToday + " Hz";
-         }
-
-          function playPlanet(planetIdx){
-             playNote(notesToday[planetIdx], 'sine');
-          }
-         
-          function playAllPlanets(){
              noteDifferences = []
              for(var i = 0; i < notesToday.length; i++){
                for(var j = 0; j < notesToday.length; j++){
