@@ -251,6 +251,17 @@
                console.log(document.getElementById(planetsId[i]));
                document.getElementById(planetsId[i]).innerHTML = notes[i][planetsData[formatedToday][i]] + " Hz";
             }
+            const c = document.getElementById("planets");
+            const ctx = c.getContext("2d");
+               width = ctx.canvas.width;
+               height = ctx.canvas.height;
+               planetsData[formatedToday][0]
+
+               for (var i = 0; i < planetsId.length; i++){
+                  x = ((height<width ? height:width)*.06*(i+1)) + (i<4 ? 0:i);
+                  y = 0;
+                  context.drawImage(img, (x*Math.cos(27.5+(planetsData[formatedToday][i]*45)))-(y*Math.sin(27.5+(planetsData[formatedToday][i]*45))), (y*Math.cos(27.5+(planetsData[formatedToday][i]*45)))+(x*Math.sin(27.5+(planetsData[formatedToday][i]*45))));
+               }
              },
              error: function(){
                 console.log("json not found");

@@ -32,8 +32,8 @@ function drawBackground(){
         ctx.arc(c.width/2, c.height/2, ((c.height<c.width ? c.height:c.width)*.06*(i+1)) + (i<4 ? 0:i) , 0, 2 * Math.PI);
         ctx.stroke();
     }
-    // Lines
-    var xy = [[0,0],[c.width/2,0],[0,c.height/2],[0,c.height]];
+    // 8 Lines
+    /*var xy = [[0,0],[c.width/2,0],[0,c.height/2],[0,c.height]];
     ctx.lineWidth = 0.75;
     ctx.strokeStyle = "black";
     for(var i = 0; i < 4; i++){
@@ -43,7 +43,7 @@ function drawBackground(){
         ctx.lineTo((c.width-xy[i][0]), (c.height-xy[i][1]));
         // Draw the Path
         ctx.stroke();
-    }
+    }*/
 }
 drawBackground();
 
