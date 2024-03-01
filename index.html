@@ -71,21 +71,22 @@
                    [30.87, 61.74, 123.5, 246.9, 493.9, 987.8, 1976, 3951, 7902], // B_n (Uranus)
                    [32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186, 16.35]] // C_n+1 (Neptune)
          
+          const notesToday = [
+            notes[0][planetsData[formatedToday][0]],
+            notes[1][planetsData[formatedToday][1]],
+            notes[2][planetsData[formatedToday][2]],
+            notes[3][planetsData[formatedToday][3]],
+            notes[4][planetsData[formatedToday][4]],
+            notes[5][planetsData[formatedToday][5]],
+            notes[6][planetsData[formatedToday][6]],
+            notes[7][planetsData[formatedToday][7]],
+            ]
+
           function playPlanet(planetIdx){
-             playNote(notes[planetIdx][planetsData[formatedToday][planetIdx]], 'sine');
+             playNote(notesToday[planetIdx], 'sine');
           }
          
           function playAllPlanets(){
-             const notesToday = [
-               notes[0][planetsData[formatedToday][0]],
-               notes[1][planetsData[formatedToday][1]],
-               notes[2][planetsData[formatedToday][2]],
-               notes[3][planetsData[formatedToday][3]],
-               notes[4][planetsData[formatedToday][4]],
-               notes[5][planetsData[formatedToday][5]],
-               notes[6][planetsData[formatedToday][6]],
-               notes[7][planetsData[formatedToday][7]],
-             ]
              noteDifferences = []
              for(var i = 0; i < notesToday.length; i++){
                for(var j = 0; j < notesToday.length; j++){
@@ -95,7 +96,6 @@
                }
              }
              averageNote = (noteDifferences.reduce((a, b) => a + b, 0) / noteDifferences.length) || 0;
-             console.log(averageNote);
              playNote(averageNote, 'sine'); // Play average tone
           }
       </script>
@@ -296,5 +296,11 @@
       </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
       <script src="./scripts/canvas.js"></script>
+      <script>
+         const planetsId = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]; 
+         for(var i = 0; i < notesToday.length; i++){         
+            document.getElementById(planetsId[i]).innerHTML = notesToday + " Hz";
+         }
+      </script>
    </body>
 </html>
