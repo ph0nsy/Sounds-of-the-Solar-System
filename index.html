@@ -76,14 +76,27 @@
           }
          
           function playAllPlanets(){
-             playNote(notes[0][planetsData[formatedToday][0]], 'sine');
-             playNote(notes[1][planetsData[formatedToday][1]], 'sine');
-             playNote(notes[2][planetsData[formatedToday][2]], 'sine');
-             playNote(notes[3][planetsData[formatedToday][3]], 'sine');
-             playNote(notes[4][planetsData[formatedToday][4]], 'sine');
-             playNote(notes[5][planetsData[formatedToday][5]], 'sine');
-             playNote(notes[6][planetsData[formatedToday][6]], 'sine');
-             playNote(notes[7][planetsData[formatedToday][7]], 'sine');
+             notesToday = [
+               notes[0][planetsData[formatedToday][0]],
+               notes[1][planetsData[formatedToday][1]],
+               notes[2][planetsData[formatedToday][2]],
+               notes[3][planetsData[formatedToday][3]],
+               notes[4][planetsData[formatedToday][4]],
+               notes[5][planetsData[formatedToday][5]],
+               notes[6][planetsData[formatedToday][6]],
+               notes[7][planetsData[formatedToday][7]],
+             ]
+             noteDifferences = []
+             for(var i = 0; i < length(notesToday); i++){
+               for(var j = 0; j < length(notesToday); j++){
+                  if(i != j){
+                     noteDifferences.append(Math.abs(notesToday[i] - notesToday[j]));
+                  }
+               }
+             }
+             averageNote = (times.reduce((a, b) => a + b, 0) / times.length) || 0;
+             console.log(averageNote);
+             playNote(averageNote, 'sine'); // Play average tone
           }
       </script>
    </head>
