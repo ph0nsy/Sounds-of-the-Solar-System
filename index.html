@@ -29,76 +29,6 @@
          }
          }
       </style>
-      <script>
-         let planetsData;
-          $.ajax({
-             type: "Get",
-             url: "./assets/data/2024_planets_octants.json",
-             dataType: "json",
-             success: function(data) {
-             planetsData = data;
-             },
-             error: function(){
-                console.log("json not found");
-             }
-          });
-          
-         const today = new Date();
-          const formatedToday = today.getFullYear() + '-' + (today.getMonth() < 9 ? '0' + (today.getMonth() + 1): (today.getMonth() + 1)) + '-' + (today.getDate() < 10 ? '0' + today.getDate(): today.getDate());
-          var context=new AudioContext();
-          var o=null;
-          var g=null;
-          function playNote(frequency, type) {
-          setTimeout(function(){
-             o = context.createOscillator();
-                g = context.createGain();
-                o.type = type;
-                o.connect(g);
-                o.frequency.value = frequency;
-                g.connect(context.destination);
-                o.start(0);
-                g.gain.exponentialRampToValueAtTime(0.00001, context.currentTime + 1);
-          },100)
-             
-          }
-           
-          notes = [[16.35, 32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186], // C_n (Mercury)
-                   [18.35, 36.71, 73.42, 146.8, 293.7, 587.3, 1175, 2349, 4699], // D_n (Venus)
-                   [20.60, 41.20, 82.41, 164.8, 329.6, 659.3, 1319, 2637, 5274], // E_n (Earth)
-                   [21.83, 43.65, 87.31, 174.6, 349.2, 698.5, 1397, 2794, 5588], // F_n (Mars)
-                   [24.50, 49.00, 98.00, 196.0, 392.0, 784.0, 1568, 3136, 6272], // G_n (Jupiter)
-                   [27.50, 55.00, 110.0, 220.0, 440.0, 880.0, 1760, 3520, 7040], // A_n (Saturn)
-                   [30.87, 61.74, 123.5, 246.9, 493.9, 987.8, 1976, 3951, 7902], // B_n (Uranus)
-                   [32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186, 16.35]] // C_n+1 (Neptune)
-         
-          const notesToday = [
-            notes[0][planetsData[formatedToday][0]],
-            notes[1][planetsData[formatedToday][1]],
-            notes[2][planetsData[formatedToday][2]],
-            notes[3][planetsData[formatedToday][3]],
-            notes[4][planetsData[formatedToday][4]],
-            notes[5][planetsData[formatedToday][5]],
-            notes[6][planetsData[formatedToday][6]],
-            notes[7][planetsData[formatedToday][7]],
-            ]
-
-          function playPlanet(planetIdx){
-             playNote(notesToday[planetIdx], 'sine');
-          }
-         
-          function playAllPlanets(){
-             noteDifferences = []
-             for(var i = 0; i < notesToday.length; i++){
-               for(var j = 0; j < notesToday.length; j++){
-                  if(i != j){
-                     noteDifferences.push(Math.abs(notesToday[i] - notesToday[j]));
-                  }
-               }
-             }
-             averageNote = (noteDifferences.reduce((a, b) => a + b, 0) / noteDifferences.length) || 0;
-             playNote(averageNote, 'sine'); // Play average tone
-          }
-      </script>
    </head>
    <body style="background-color: #18122B;">
       <!--<py-config>"packages" = ["numpy", "astropy", "astroquery"]</py-config>
@@ -296,11 +226,83 @@
       </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
       <script src="./scripts/canvas.js"></script>
+
       <script>
+         let planetsData;
+          $.ajax({
+             type: "Get",
+             url: "./assets/data/2024_planets_octants.json",
+             dataType: "json",
+             success: function(data) {
+             planetsData = data;
+             },
+             error: function(){
+                console.log("json not found");
+             }
+          });
+          
+          while(Object.keys(planetsData).length === 0){ console.log("Wait until load.")}
+
+         const today = new Date();
+          const formatedToday = today.getFullYear() + '-' + (today.getMonth() < 9 ? '0' + (today.getMonth() + 1): (today.getMonth() + 1)) + '-' + (today.getDate() < 10 ? '0' + today.getDate(): today.getDate());
+          var context=new AudioContext();
+          var o=null;
+          var g=null;
+          function playNote(frequency, type) {
+          setTimeout(function(){
+             o = context.createOscillator();
+                g = context.createGain();
+                o.type = type;
+                o.connect(g);
+                o.frequency.value = frequency;
+                g.connect(context.destination);
+                o.start(0);
+                g.gain.exponentialRampToValueAtTime(0.00001, context.currentTime + 1);
+          },100)
+             
+          }
+           
+          const notes = [[16.35, 32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186], // C_n (Mercury)
+                   [18.35, 36.71, 73.42, 146.8, 293.7, 587.3, 1175, 2349, 4699], // D_n (Venus)
+                   [20.60, 41.20, 82.41, 164.8, 329.6, 659.3, 1319, 2637, 5274], // E_n (Earth)
+                   [21.83, 43.65, 87.31, 174.6, 349.2, 698.5, 1397, 2794, 5588], // F_n (Mars)
+                   [24.50, 49.00, 98.00, 196.0, 392.0, 784.0, 1568, 3136, 6272], // G_n (Jupiter)
+                   [27.50, 55.00, 110.0, 220.0, 440.0, 880.0, 1760, 3520, 7040], // A_n (Saturn)
+                   [30.87, 61.74, 123.5, 246.9, 493.9, 987.8, 1976, 3951, 7902], // B_n (Uranus)
+                   [32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186, 16.35]] // C_n+1 (Neptune)
+         
+          const notesToday = [
+            notes[0][planetsData[formatedToday][0]],
+            notes[1][planetsData[formatedToday][1]],
+            notes[2][planetsData[formatedToday][2]],
+            notes[3][planetsData[formatedToday][3]],
+            notes[4][planetsData[formatedToday][4]],
+            notes[5][planetsData[formatedToday][5]],
+            notes[6][planetsData[formatedToday][6]],
+            notes[7][planetsData[formatedToday][7]]
+            ]
+
          const planetsId = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]; 
          for(var i = 0; i < notesToday.length; i++){         
             document.getElementById(planetsId[i]).innerHTML = notesToday + " Hz";
          }
+
+          function playPlanet(planetIdx){
+             playNote(notesToday[planetIdx], 'sine');
+          }
+         
+          function playAllPlanets(){
+             noteDifferences = []
+             for(var i = 0; i < notesToday.length; i++){
+               for(var j = 0; j < notesToday.length; j++){
+                  if(i != j){
+                     noteDifferences.push(Math.abs(notesToday[i] - notesToday[j]));
+                  }
+               }
+             }
+             averageNote = (noteDifferences.reduce((a, b) => a + b, 0) / noteDifferences.length) || 0;
+             playNote(averageNote, 'sine'); // Play average tone
+          }
       </script>
    </body>
 </html>
