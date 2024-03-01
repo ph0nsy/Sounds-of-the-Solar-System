@@ -248,6 +248,7 @@
          
             for(var i = 0; i < planetsId.length; i++){     
                console.log(planetsId[i]);    
+               console.log(document.getElementById(planetsId[i]).innerHTML);
                document.getElementById(planetsId[i]).innerHTML = notes[i][planetsData[formatedToday][i]] + " Hz";
             }
              },
