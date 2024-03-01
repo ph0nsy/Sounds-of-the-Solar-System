@@ -90,7 +90,7 @@
              for(var i = 0; i < notesToday.length; i++){
                for(var j = 0; j < notesToday.length; j++){
                   if(i != j){
-                     noteDifferences.append(Math.abs(notesToday[i] - notesToday[j]));
+                     noteDifferences.push(Math.abs(notesToday[i] - notesToday[j]));
                   }
                }
              }
