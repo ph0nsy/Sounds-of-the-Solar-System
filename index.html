@@ -76,7 +76,7 @@
           }
          
           function playAllPlanets(){
-             notesToday = [
+             const notesToday = [
                notes[0][planetsData[formatedToday][0]],
                notes[1][planetsData[formatedToday][1]],
                notes[2][planetsData[formatedToday][2]],
@@ -87,8 +87,8 @@
                notes[7][planetsData[formatedToday][7]],
              ]
              noteDifferences = []
-             for(var i = 0; i < length(notesToday); i++){
-               for(var j = 0; j < length(notesToday); j++){
+             for(var i = 0; i < notesToday.length; i++){
+               for(var j = 0; j < notesToday.length; j++){
                   if(i != j){
                      noteDifferences.append(Math.abs(notesToday[i] - notesToday[j]));
                   }
