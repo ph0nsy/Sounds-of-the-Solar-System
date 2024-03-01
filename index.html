@@ -241,7 +241,7 @@
              }
           });
           
-          while(Object.keys(planetsData).length === "undefined"){ console.log("Wait until load.")}
+          while(planetsData === "undefined"){ console.log("Wait until load.")}
 
          const today = new Date();
           const formatedToday = today.getFullYear() + '-' + (today.getMonth() < 9 ? '0' + (today.getMonth() + 1): (today.getMonth() + 1)) + '-' + (today.getDate() < 10 ? '0' + today.getDate(): today.getDate());
