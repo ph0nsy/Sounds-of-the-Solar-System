@@ -25,72 +25,71 @@
          }
          @media only screen and (max-width: 1020px){
          .cond-pl {
-          padding-left: 50px;
+         padding-left: 50px;
          }
          }
-      </style>  
+      </style>
       <script>
-        let planetsData;
-         $.ajax({
-            type: "Get",
-            url: "./assets/data/2024_planets_octants.json",
-            dataType: "json",
-            success: function(data) {
-
-            console.log(data);
-            planetsData = data;
-
-            },
-            error: function(){
-               alert("json not found");
-            }
-         });
-        console.log(planetsData);
-         
-        const today = new Date();
-         const formatedToday = today.getFullYear() + '-' + (today.getMonth() < 9 ? '0' + (today.getMonth() + 1): (today.getMonth() + 1)) + '-' + (today.getDate() < 10 ? '0' + today.getDate(): today.getDate());
-         console.log(formatedToday);
-         
-         var context=new AudioContext();
-         var o=null;
-         var g=null;
-         function playNote(frequency, type) {
-         setTimeout(function(){
-            o = context.createOscillator();
-               g = context.createGain();
-               o.type = type;
-               o.connect(g);
-               o.frequency.value = frequency;
-               g.connect(context.destination);
-               o.start(0);
-               g.gain.exponentialRampToValueAtTime(0.00001, context.currentTime + 1);
-         },100)
-            
-         }
+         let planetsData;
+          $.ajax({
+             type: "Get",
+             url: "./assets/data/2024_planets_octants.json",
+             dataType: "json",
+             success: function(data) {
+             planetsData = data;
+             },
+             error: function(){
+                alert("json not found");
+             }
+          });
           
-         notes = [[16.35, 32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186], // C_n
-                  [18.35, 36.71, 73.42, 146.8, 293.7, 587.3, 1175, 2349, 4699], // D_n
-                  [20.60, 41.20, 82.41, 164.8, 329.6, 659.3, 1319, 2637, 5274], // E_n
-                  [21.83, 43.65, 87.31, 174.6, 349.2, 698.5, 1397, 2794, 5588], // F_n
-                  [24.50, 49.00, 98.00, 196.0, 392.0, 784.0, 1568, 3136, 6272], // G_n
-                  [27.50, 55.00, 110.0, 220.0, 440.0, 880.0, 1760, 3520, 7040], // A_n
-                  [30.87, 61.74, 123.5, 246.9, 493.9, 987.8, 1976, 3951, 7902], // B_n
-                  [32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186, 16.35]] // C_n+1
-
-         function playNote(planetIdx){
-            //planetsData[]
-            playNote(1047, 'sine');
-         }
-
-         function playAllNotes(){
-            playNote(1047, 'sine');
-            playNote(392.0, 'sine'); 
-         }
+         const today = new Date();
+          const formatedToday = today.getFullYear() + '-' + (today.getMonth() < 9 ? '0' + (today.getMonth() + 1): (today.getMonth() + 1)) + '-' + (today.getDate() < 10 ? '0' + today.getDate(): today.getDate());
+          var context=new AudioContext();
+          var o=null;
+          var g=null;
+          function playNote(frequency, type) {
+          setTimeout(function(){
+             o = context.createOscillator();
+                g = context.createGain();
+                o.type = type;
+                o.connect(g);
+                o.frequency.value = frequency;
+                g.connect(context.destination);
+                o.start(0);
+                g.gain.exponentialRampToValueAtTime(0.00001, context.currentTime + 1);
+          },100)
+             
+          }
+           
+          notes = [[16.35, 32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186], // C_n (Mercury)
+                   [18.35, 36.71, 73.42, 146.8, 293.7, 587.3, 1175, 2349, 4699], // D_n (Venus)
+                   [20.60, 41.20, 82.41, 164.8, 329.6, 659.3, 1319, 2637, 5274], // E_n (Earth)
+                   [21.83, 43.65, 87.31, 174.6, 349.2, 698.5, 1397, 2794, 5588], // F_n (Mars)
+                   [24.50, 49.00, 98.00, 196.0, 392.0, 784.0, 1568, 3136, 6272], // G_n (Jupiter)
+                   [27.50, 55.00, 110.0, 220.0, 440.0, 880.0, 1760, 3520, 7040], // A_n (Saturn)
+                   [30.87, 61.74, 123.5, 246.9, 493.9, 987.8, 1976, 3951, 7902], // B_n (Uranus)
+                   [32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186, 16.35]] // C_n+1 (Neptune)
+         
+          function playPlanet(planetIdx){
+             playNote(notes[planetIdx][planetsData[formatedToday][planetIdx]], 'sine');
+          }
+         
+          function playAllPlanets(){
+             playNote(notes[0][planetsData[formatedToday][0]], 'sine');
+             playNote(notes[1][planetsData[formatedToday][1]], 'sine');
+             playNote(notes[2][planetsData[formatedToday][2]], 'sine');
+             playNote(notes[3][planetsData[formatedToday][3]], 'sine');
+             playNote(notes[4][planetsData[formatedToday][4]], 'sine');
+             playNote(notes[5][planetsData[formatedToday][5]], 'sine');
+             playNote(notes[6][planetsData[formatedToday][6]], 'sine');
+             playNote(notes[7][planetsData[formatedToday][7]], 'sine');
+          }
       </script>
    </head>
    <body style="background-color: #18122B;">
-    <!--<py-config>"packages" = ["numpy", "astropy", "astroquery"]</py-config>
-    <py-script></py-script>-->
+      <!--<py-config>"packages" = ["numpy", "astropy", "astroquery"]</py-config>
+         <py-script></py-script>-->
       <header class="sticky-top">
          <nav class="navbar navbar-expand-lg" id="navbar" style="background-color: #070F2B; padding-top: 15px;">
             <div class="container-fluid">
@@ -135,34 +134,57 @@
          </div>
          <div id="scrollspyHeading2">
             <div class="p-5">
-              <hr>
-              <br>
-              <h2>First heading</h2>
-              <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
-              <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+               <hr>
+               <br>
+               <h2>First heading</h2>
+               <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+               <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
             </div>
-            <div style="width: 100%; background-image: linear-gradient(#18122B, #070F2A, #18122B);"><canvas id="planets" style="display: block; margin-left: auto; margin-right: auto; width: 80%; height: 100%; border: solid black; border-radius: 12px;"></canvas></div>
+            <div style="width: 100%; background-image: linear-gradient(#18122B, #070F2A, #18122B);">
+               <canvas id="planets" style="display: block; margin-left: auto; margin-right: auto; width: 80%; height: 100%; border: solid black; border-radius: 12px;"></canvas>
+            </div>
             <br>
             <div style="display: block; width: 90%; margin-left: auto; margin-right: auto; text-align:center;" class="d-block">
-               <a href="#" type="button" class="btn btn-lg"><img src="./assets/planets/Mercury.png" width="48" height="48" style="filter: blur(0.5px);"/><br><p id="#Mercury">1440hz</p></a>
-               <a href="#" type="button" class="btn btn-lg"><img src="./assets/planets/Venus.png" width="48" height="48" style="filter: blur(0.5px);"/><br><p id="#Venus">1440hz</p></a>
-               <a href="#" type="button" class="btn btn-lg"><img src="./assets/planets/Earth.png" width="48" height="48" style="filter: blur(0.5px);"/><br><p id="#Earth">1440hz</p></a>
-               <a href="#" type="button" class="btn btn-lg"><img src="./assets/planets/Mars.png" width="48" height="48" style="filter: blur(0.5px);"/><br><p id="#Mars">1440hz</p></a>
-               <a href="#" type="button" class="btn btn-lg"><img src="./assets/planets/Jupiter.png" width="48" height="48" style="filter: blur(0.5px);"/><br><p id="#Jupiter">1440hz</p></a>
-               <a href="#" type="button" class="btn btn-lg"><img src="./assets/planets/Saturn.png" width="64" height="48" style="filter: blur(0.5px);"/><br><p id="#Saturn">1440hz</p></a>
-               <a href="#" type="button" class="btn btn-lg"><img src="./assets/planets/Uranus.png" width="48" height="48" style="filter: blur(0.5px);"/><br><p id="#Uranus">1440hz</p></a>
-               <a href="#" type="button" class="btn btn-lg"><img src="./assets/planets/Neptune.png" width="48" height="48" style="filter: blur(0.5px);"/><br><p id="#Nepture">1440hz</p></a>
-               <a type="button" class="btn btn-lg" onclick="context.resume(); playG6();"><img src="./assets/Solar_System_Sounds_Logo.png" width="48" height="48"/><p>All</p></a>
-               <a href="#" type="button" class="btn btn-lg" style="background-size: contain; background-repeat: no-repeat; background-position:center;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 576 512">
-                     <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                     <path d="M301.1 34.8C312.6 40 320 51.4 320 64V448c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h67.8L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3zM425 167l55 55 55-55c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-55 55 55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-55-55-55 55c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l55-55-55-55c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"/>
-                  </svg><p>Mute</p>
+               <a href="#" type="button" class="btn btn-lg" onclick="context.resume(); playPlanet(0);">
+                  <img src="./assets/planets/Mercury.png" width="48" height="48" style="filter: blur(0.5px);"/><br>
+                  <p id="#Mercury">1440hz</p>
                </a>
-             </div>
-             <br>          
-             <br>             
-          </div>
+               <a href="#" type="button" class="btn btn-lg" onclick="context.resume(); playPlanet(1);">
+                  <img src="./assets/planets/Venus.png" width="48" height="48" style="filter: blur(0.5px);"/><br>
+                  <p id="#Venus">1440hz</p>
+               </a>
+               <a href="#" type="button" class="btn btn-lg" onclick="context.resume(); playPlanet(2);">
+                  <img src="./assets/planets/Earth.png" width="48" height="48" style="filter: blur(0.5px);"/><br>
+                  <p id="#Earth">1440hz</p>
+               </a>
+               <a href="#" type="button" class="btn btn-lg" onclick="context.resume(); playPlanet(3);">
+                  <img src="./assets/planets/Mars.png" width="48" height="48" style="filter: blur(0.5px);"/><br>
+                  <p id="#Mars">1440hz</p>
+               </a>
+               <a href="#" type="button" class="btn btn-lg" onclick="context.resume(); playPlanet(4);">
+                  <img src="./assets/planets/Jupiter.png" width="48" height="48" style="filter: blur(0.5px);"/><br>
+                  <p id="#Jupiter">1440hz</p>
+               </a>
+               <a href="#" type="button" class="btn btn-lg" onclick="context.resume(); playPlanet(5);">
+                  <img src="./assets/planets/Saturn.png" width="64" height="48" style="filter: blur(0.5px);"/><br>
+                  <p id="#Saturn">1440hz</p>
+               </a>
+               <a href="#" type="button" class="btn btn-lg" onclick="context.resume(); playPlanet(6);">
+                  <img src="./assets/planets/Uranus.png" width="48" height="48" style="filter: blur(0.5px);"/><br>
+                  <p id="#Uranus">1440hz</p>
+               </a>
+               <a href="#" type="button" class="btn btn-lg" onclick="context.resume(); playPlanet(7);">
+                  <img src="./assets/planets/Neptune.png" width="48" height="48" style="filter: blur(0.5px);"/><br>
+                  <p id="#Nepture">1440hz</p>
+               </a>
+               <a type="button" class="btn btn-lg" onclick="context.resume(); playAllPlanets();">
+                  <img src="./assets/Solar_System_Sounds_Logo.png" width="48" height="48"/>
+                  <p>All</p>
+               </a>
+            </div>
+            <br>          
+            <br>             
+         </div>
          <div class="p-3" style="background-color: #3D3B40;" id="scrollspyHeading3">
             <br>
             <h2 style="font-family: 'Josefin Sans', sans-serif; font-size: xx-large; text-align: center;">INSPIRATIONS</h2>
