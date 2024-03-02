@@ -302,14 +302,14 @@
         }
       });
       window.addEventListener('resize', () => {
-        console.log(planetsId.length)
+         const c = document.getElementById("planets");
+         const ctx = c.getContext("2d");
+         width = ctx.canvas.width;
+         height = ctx.canvas.height;
+         console.log("Size: " + width + " x " + height)
         for (var i = 0; i < planetsId.length; i++) {
           const img = new Image();
           img.src = planetsImg[i];
-          const c = document.getElementById("planets");
-          const ctx = c.getContext("2d");
-          width = ctx.canvas.width;
-          height = ctx.canvas.height;
           x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i);
           y = 0;
           x_ = (x * Math.cos(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) - (y * Math.sin(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) + width / 2;
