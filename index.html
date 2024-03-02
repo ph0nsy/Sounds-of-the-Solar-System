@@ -265,9 +265,6 @@
       const today = new Date();
       const formatedToday = today.getFullYear() + '-' + (today.getMonth() < 9 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)) + '-' + (today.getDate() < 10 ? '0' + today.getDate() : today.getDate());
       let planetsData;
-      document.addEventListener("loadedJSON", function() {
-        console.log(planetsData);
-      });
       $.ajax({
         type: "Get",
         url: "./assets/data/2024_planets_octants.json",
@@ -301,14 +298,13 @@
           console.log("json not found");
         }
       });
-      window.addEventListener('planet_resize', () => {
-         const c = document.getElementById("planets");
-         const ctx = c.getContext("2d");
-         width = ctx.canvas.width;
-         height = ctx.canvas.height;
-         console.log("Size: " + width + " x " + height)
-        for (var i = 0; i < planetsId.length; i++) {
-          const img = new Image();
+
+      function drawPlanet(i){
+        const c = document.getElementById("planets");
+        const ctx = c.getContext("2d");
+        width = ctx.canvas.width;
+        height = ctx.canvas.height;
+        const img = new Image();
           img.src = planetsImg[i];
           x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i);
           y = 0;
@@ -327,7 +323,16 @@
                   ctx.drawImage(img, x_ - (sidePlanet * 0.75), y_ - (sidePlanet / 2), sidePlanet * 1.5, sidePlanet);}
             }
           console.log("Resize: (" + x_ + ", " + y_ + ")");
-        }
+      }
+      window.addEventListener('planet_resize', () => {
+         drawPlanet(0);
+         drawPlanet(1);
+         drawPlanet(2);
+         drawPlanet(3);
+         drawPlanet(4);
+         drawPlanet(5);
+         drawPlanet(6);
+         drawPlanet(7);
       });
       var context = new AudioContext();
       var o = null;
