@@ -268,10 +268,10 @@
                   img.src = planetsImg[i];
                   x = ((height<width ? height:width)*.06*(i+1)) + (i<4 ? 0:i);
                   y = 0;
-                  x_ = (x*Math.cos(27.5+(planetsData[formatedToday][i]*45)))-(y*Math.sin(27.5+(planetsData[formatedToday][i]*45)));
-                  y_ = (y*Math.cos(27.5+(planetsData[formatedToday][i]*45)))+(x*Math.sin(27.5+(planetsData[formatedToday][i]*45)));
+                  x_ = (x*Math.cos(27.5+(planetsData[formatedToday][i]*45)))-(y*Math.sin(27.5+(planetsData[formatedToday][i]*45))) + width/2;
+                  y_ = (y*Math.cos(27.5+(planetsData[formatedToday][i]*45)))+(x*Math.sin(27.5+(planetsData[formatedToday][i]*45))) + height/2;
                   console.log(x_ + ", " + y_);
-                  ctx.drawImage(img, x_, y_);
+                  ctx.drawImage(img, x_, y_, );
                }
              },
              error: function(){
