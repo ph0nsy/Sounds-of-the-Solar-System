@@ -288,7 +288,7 @@
           for (var i = 0; i < planetsId.length; i++) {
             const img = new Image();
             img.src = planetsImg[i];
-            x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i);
+            x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i) - (width / 2);
             y = 0;
             x_ = (x * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) - (y * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + width / 2;
             y_ = (y * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) + (x * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + height / 2;
@@ -309,15 +309,17 @@
       window.addEventListener('resize', () => {
             for(var i; i < planetsId.length; i++){
             const img = new Image();
-                  img.src = planetsImg[i];
-                  const c = document.getElementById("planets");
-                  const ctx = c.getContext("2d");
-                  width = ctx.canvas.width;
-                  height = ctx.canvas.height;
-                  x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i) - (width / 2);
-                  y = 0;
-                  x_ = (x * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) - (y * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + width / 2;
-                  y_ = (y * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) + (x * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + height / 2;
+            img.src = planetsImg[i];
+            const c = document.getElementById("planets");
+            const ctx = c.getContext("2d");
+            width = ctx.canvas.width;
+            height = ctx.canvas.height;
+            x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i) - (width / 2);
+            y = 0;
+            x_ = (x * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) - (y * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + width / 2;
+            y_ = (y * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) + (x * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + height / 2;
+            sidePlanet = Math.round((ctx.canvas.height<ctx.canvas.width ? ctx.canvas.height:ctx.canvas.width)*planetsSize[i]*10)/10;
+
             if(i != 5){
                ctx.drawImage(img, x_ - (planetsSize[i] / 2), y_ - (planetsSize[i] / 2), planetsSize[i], planetsSize[i]);
             } else {
