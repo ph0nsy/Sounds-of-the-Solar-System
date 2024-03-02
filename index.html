@@ -256,11 +256,15 @@
         [24.50, 49.00, 98.00, 196.0, 392.0, 784.0, 1568, 3136, 6272], // G_n (Jupiter)
         [27.50, 55.00, 110.0, 220.0, 440.0, 880.0, 1760, 3520, 7040], // A_n (Saturn)
         [30.87, 61.74, 123.5, 246.9, 493.9, 987.8, 1976, 3951, 7902], // B_n (Uranus)
-        [32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186, 16.35]
-      ] // C_n+1 (Neptune)
+        [32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186, 16.35]  // C_n+1 (Neptune)
+      ] 
       const planetsId = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
       const planetsImg = ["./assets/planets/Mercury.png", "./assets/planets/Venus.png", "./assets/planets/Earth.png", "./assets/planets/Mars.png", "./assets/planets/Jupiter.png", "./assets/planets/Saturn.png", "./assets/planets/Uranus.png", "./assets/planets/Neptune.png"];
       const planetsSize = [16, 24, 32, 32, 56, 64, 48, 48];
+
+      const today = new Date();
+      const formatedToday = today.getFullYear() + '-' + (today.getMonth() < 9 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)) + '-' + (today.getDate() < 10 ? '0' + today.getDate() : today.getDate());
+      
       document.addEventListener("loadedJSON", function() {
          console.log('window.myVariable is defined now!');
          for(var i; i < planetsId.length; i++){
@@ -296,7 +300,8 @@
                });
             }
          }
-      })
+      });
+
       let planetsData;
       $.ajax({
         type: "Get",
@@ -331,8 +336,7 @@
           console.log("json not found");
         }
       });
-      const today = new Date();
-      const formatedToday = today.getFullYear() + '-' + (today.getMonth() < 9 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)) + '-' + (today.getDate() < 10 ? '0' + today.getDate() : today.getDate());
+      
       var context = new AudioContext();
       var o = null;
       var g = null;
@@ -374,7 +378,7 @@
           }
         }
         averageNote = (noteDifferences.reduce((a, b) => a + b, 0) / noteDifferences.length) || 0;
-        playNote(averageNote, 'sine'); // Play average tone
+        playNote(averageNote, 'sine'); // Play combination tone (average difference between tones)
       }
     </script>
   </body>
