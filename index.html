@@ -247,6 +247,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./scripts/canvas.js"></script>
     <script>
+
       const notes = [
         [16.35, 32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186], // C_n (Mercury)
         [18.35, 36.71, 73.42, 146.8, 293.7, 587.3, 1175, 2349, 4699], // D_n (Venus)
@@ -257,6 +258,45 @@
         [30.87, 61.74, 123.5, 246.9, 493.9, 987.8, 1976, 3951, 7902], // B_n (Uranus)
         [32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186, 16.35]
       ] // C_n+1 (Neptune)
+      const planetsId = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
+      const planetsImg = ["./assets/planets/Mercury.png", "./assets/planets/Venus.png", "./assets/planets/Earth.png", "./assets/planets/Mars.png", "./assets/planets/Jupiter.png", "./assets/planets/Saturn.png", "./assets/planets/Uranus.png", "./assets/planets/Neptune.png"];
+      const planetsSize = [16, 24, 32, 32, 56, 64, 48, 48];
+      document.addEventListener("loadedJSON", function() {
+         console.log('window.myVariable is defined now!');
+         for(var i; i < planetsId.length; i++){
+            if(i != 5){
+               window.addEventListener('resize', () => {
+                  const img = new Image();
+                  img.src = planetsImg[i];
+                  const c = document.getElementById("planets");
+                  const ctx = c.getContext("2d");
+                  width = ctx.canvas.width;
+                  height = ctx.canvas.height;
+                  x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i);
+                  y = 0;
+                  x_ = (x * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) - (y * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + width / 2;
+                  y_ = (y * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) + (x * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + height / 2;
+                  ctx.drawImage(img, x_ - (planetsSize[i] / 2), y_ - (planetsSize[i] / 2), planetsSize[i], planetsSize[i]);
+                  console.log("Resize: (" + x_ + ", " + y_ + ")");
+               });
+            } else {
+               window.addEventListener('resize', () => {
+                  const img = new Image();
+                  img.src = planetsImg[i];
+                  const c = document.getElementById("planets");
+                  const ctx = c.getContext("2d");
+                  width = ctx.canvas.width;
+                  height = ctx.canvas.height;
+                  x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i);
+                  y = 0;
+                  x_ = (x * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) - (y * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + width / 2;
+                  y_ = (y * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) + (x * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + height / 2;
+                  ctx.drawImage(img, x_ - planetsSize[i], y_ - (planetsSize[i] / 2), planetsSize[i] * 2, planetsSize[i]);
+                  console.log("Resize: (" + x_ + ", " + y_ + ")");
+               });
+            }
+         }
+      })
       let planetsData;
       $.ajax({
         type: "Get",
@@ -264,9 +304,6 @@
         dataType: "json",
         success: function(data) {
           planetsData = data;
-          const planetsId = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
-          const planetsImg = ["./assets/planets/Mercury.png", "./assets/planets/Venus.png", "./assets/planets/Earth.png", "./assets/planets/Mars.png", "./assets/planets/Jupiter.png", "./assets/planets/Saturn.png", "./assets/planets/Uranus.png", "./assets/planets/Neptune.png"];
-          const planetsSize = [16, 24, 32, 32, 56, 64, 48, 48];
           for (var i = 0; i < planetsId.length; i++) {
             document.getElementById(planetsId[i]).innerHTML = notes[i][planetsData[formatedToday][i]] + " Hz";
           }
@@ -274,7 +311,6 @@
           const ctx = c.getContext("2d");
           width = ctx.canvas.width;
           height = ctx.canvas.height;
-          planetsData[formatedToday][0]
           for (var i = 0; i < planetsId.length; i++) {
             const img = new Image();
             img.src = planetsImg[i];
@@ -285,38 +321,11 @@
             console.log(x_ + ", " + y_);
             if (i != 5) {
               ctx.drawImage(img, x_ - (planetsSize[i] / 2), y_ - (planetsSize[i] / 2), planetsSize[i], planetsSize[i]);
-              window.addEventListener('resize', () => {
-                const planetsImg = ["./assets/planets/Mercury.png", "./assets/planets/Venus.png", "./assets/planets/Earth.png", "./assets/planets/Mars.png", "./assets/planets/Jupiter.png", "./assets/planets/Saturn.png", "./assets/planets/Uranus.png", "./assets/planets/Neptune.png"];
-                const planetsSize = [16, 24, 32, 32, 56, 64, 48, 48];
-                const c = document.getElementById("planets");
-                const ctx = c.getContext("2d");
-                width = ctx.canvas.width;
-                height = ctx.canvas.height;
-                x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i);
-                y = 0;
-                x_ = (x * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) - (y * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + width / 2;
-                y_ = (y * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) + (x * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + height / 2;
-                ctx.drawImage(img, x_ - (planetsSize[i] / 2), y_ - (planetsSize[i] / 2), planetsSize[i], planetsSize[i]);
-                console.log("Resize: (" + x_ + ", " + y_ + ")");
-              });
             } else {
               ctx.drawImage(img, x_ - planetsSize[i], y_ - (planetsSize[i] / 2), planetsSize[i] * 2, planetsSize[i]);
-              window.addEventListener('resize', () => {
-                const planetsImg = ["./assets/planets/Mercury.png", "./assets/planets/Venus.png", "./assets/planets/Earth.png", "./assets/planets/Mars.png", "./assets/planets/Jupiter.png", "./assets/planets/Saturn.png", "./assets/planets/Uranus.png", "./assets/planets/Neptune.png"];
-                const planetsSize = [16, 24, 32, 32, 56, 64, 48, 48];
-                const c = document.getElementById("planets");
-                const ctx = c.getContext("2d");
-                width = ctx.canvas.width;
-                height = ctx.canvas.height;
-                x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i);
-                y = 0;
-                x_ = (x * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) - (y * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + width / 2;
-                y_ = (y * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) + (x * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + height / 2;
-                ctx.drawImage(img, x_ - planetsSize[i], y_ - (planetsSize[i] / 2), planetsSize[i] * 2, planetsSize[i]);
-                console.log("Resize: (" + x_ + ", " + y_ + ")");
-              });
             }
           }
+          document.dispatchEvent(new Event("loadedJSON"));
         },
         error: function() {
           console.log("json not found");
