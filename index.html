@@ -267,7 +267,7 @@
 
                for (var i = 0; i < planetsId.length; i++){
                   const img = new Image();
-                  img.src = "myImage.png";
+                  img.src = planetsImg[i];
                   x = ((height<width ? height:width)*.06*(i+1)) + (i<4 ? 0:i);
                   y = 0;
                   context.drawImage(img, (x*Math.cos(27.5+(planetsData[formatedToday][i]*45)))-(y*Math.sin(27.5+(planetsData[formatedToday][i]*45))), (y*Math.cos(27.5+(planetsData[formatedToday][i]*45)))+(x*Math.sin(27.5+(planetsData[formatedToday][i]*45))));
