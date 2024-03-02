@@ -316,9 +316,9 @@
           y_ = (y * Math.cos(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) + (x * Math.sin(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) + height / 2;
           sidePlanet = Math.round((ctx.canvas.height < ctx.canvas.width ? ctx.canvas.height : ctx.canvas.width) * planetsSize[i] * 10) / 10;
           if (i != 5) {
-            ctx.drawImage(img, x_ - (planetsSize[i] / 2), y_ - (planetsSize[i] / 2), planetsSize[i], planetsSize[i]);
+              ctx.drawImage(img, x_ - (sidePlanet / 2), y_ - (sidePlanet / 2), sidePlanet, sidePlanet);
           } else {
-            ctx.drawImage(img, x_ - (planetsSize[i] * 0.75), y_ - (planetsSize[i] / 2), planetsSize[i] * 1.5, planetsSize[i]);
+               ctx.drawImage(img, x_ - (sidePlanet * 0.75), y_ - (sidePlanet / 2), sidePlanet * 1.5, sidePlanet);
           }
           console.log("Resize: (" + x_ + ", " + y_ + ")");
         }
