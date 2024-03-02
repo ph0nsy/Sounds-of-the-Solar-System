@@ -35,7 +35,7 @@ function drawBackground(){
     // Place Sun
     const img = new Image();
     img.src = "./assets/Solar_System_Sounds_Logo.png";
-    ctx.drawImage(img, (c.width/2) - (c.height<c.width ? c.height:c.width)*0.01, (c.height/2) - (c.height<c.width ? c.height:c.width)*0.01, (c.height<c.width ? c.height:c.width)*0.01, (c.height<c.width ? c.height:c.width)*0.01);
+    ctx.drawImage(img, (c.width/2) - (c.height<c.width ? c.height:c.width)*0.1, (c.height/2) - (c.height<c.width ? c.height:c.width)*0.1, (c.height<c.width ? c.height:c.width)*0.1, (c.height<c.width ? c.height:c.width)*0.1);
     // 8 Lines
     /*var xy = [[0,0],[c.width/2,0],[0,c.height/2],[0,c.height]];
     ctx.lineWidth = 0.75;
