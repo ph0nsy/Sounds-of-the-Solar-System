@@ -301,30 +301,34 @@
           console.log("json not found");
         }
       });
-      for (var i = 0; i < planetsId.length; i++) {
-         window.addEventListener('planet_resize', () => {
-            const c = document.getElementById("planets");
-            const ctx = c.getContext("2d");
-            width = ctx.canvas.width;
-            height = ctx.canvas.height;
-            console.log("Size: " + width + " x " + height)
-            const img = new Image();
-            img.src = planetsImg[i];
-            x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i);
-            y = 0;
-            x_ = (x * Math.cos(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) - (y * Math.sin(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) + width / 2;
-            y_ = (y * Math.cos(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) + (x * Math.sin(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) + height / 2;
-            sidePlanet = Math.round((ctx.canvas.height < ctx.canvas.width ? ctx.canvas.height : ctx.canvas.width) * planetsSize[i] * 10) / 10;
-               if (i != 5) {
-                  console.log("Position: (" + x + ", " + y + ") - Side:" + sidePlanet + " - Image: " + img);
-                  img.onload = ctx.drawImage(img, x_ - (sidePlanet / 2), y_ - (sidePlanet / 2), sidePlanet, sidePlanet);
-               } else {
-                  console.log("Position: (" + x + ", " + y + ") - Side:" + sidePlanet + " - Image: " + img);
-                  img.onload = ctx.drawImage(img, x_ - (sidePlanet * 0.75), y_ - (sidePlanet / 2), sidePlanet * 1.5, sidePlanet);
-               }
-            console.log("Resize: (" + x_ + ", " + y_ + ")");
-         });
-      }
+      window.addEventListener('planet_resize', () => {
+         const c = document.getElementById("planets");
+         const ctx = c.getContext("2d");
+         width = ctx.canvas.width;
+         height = ctx.canvas.height;
+         console.log("Size: " + width + " x " + height)
+        for (var i = 0; i < planetsId.length; i++) {
+          const img = new Image();
+          img.src = planetsImg[i];
+          x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i);
+          y = 0;
+          x_ = (x * Math.cos(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) - (y * Math.sin(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) + width / 2;
+          y_ = (y * Math.cos(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) + (x * Math.sin(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) + height / 2;
+          sidePlanet = Math.round((ctx.canvas.height < ctx.canvas.width ? ctx.canvas.height : ctx.canvas.width) * planetsSize[i] * 10) / 10;
+            if (i != 5) {
+               console.log("Position: (" + x + ", " + y + ") - Side:" + sidePlanet + " - Image: " + img);
+               img.onload = function(){
+                  console.log("Image: " + img + " - Image source: " + img.src);
+                  ctx.drawImage(img, x_ - (sidePlanet / 2), y_ - (sidePlanet / 2), sidePlanet, sidePlanet);}
+            } else {
+               console.log("Position: (" + x + ", " + y + ") - Side:" + sidePlanet + " - Image: " + img);
+               img.onload = function(){
+                  console.log("Image: " + img + " - Image source: " + img.src);
+                  ctx.drawImage(img, x_ - (sidePlanet * 0.75), y_ - (sidePlanet / 2), sidePlanet * 1.5, sidePlanet);}
+            }
+          console.log("Resize: (" + x_ + ", " + y_ + ")");
+        }
+      });
       var context = new AudioContext();
       var o = null;
       var g = null;
