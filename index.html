@@ -300,6 +300,9 @@
       });
 
       function drawPlanet(i){
+        
+        const img = new Image();
+          img.src = planetsImg[i];
             if (i != 5) {
                console.log("Position: (" + x + ", " + y + ") - Side:" + sidePlanet + " - Image: " + img);
                img.onload = function(){
@@ -307,8 +310,6 @@
         const ctx = c.getContext("2d");
         width = ctx.canvas.width;
         height = ctx.canvas.height;
-        const img = new Image();
-          img.src = planetsImg[i];
           x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i);
           y = 0;
           x_ = (x * Math.cos(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) - (y * Math.sin(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) + width / 2;
@@ -324,8 +325,6 @@
         const ctx = c.getContext("2d");
         width = ctx.canvas.width;
         height = ctx.canvas.height;
-        const img = new Image();
-          img.src = planetsImg[i];
           x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i);
           y = 0;
           x_ = (x * Math.cos(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) - (y * Math.sin(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) + width / 2;
