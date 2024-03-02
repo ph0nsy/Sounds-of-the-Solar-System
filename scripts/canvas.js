@@ -7,7 +7,7 @@ window.addEventListener('resize', () => {
     ctx.canvas.width  = window.innerWidth*0.8;
     ctx.canvas.height = window.innerHeight*0.8/1.5;
     drawBackground();
-    document.dispatchEvent(new Event("planet_resize"));
+    window.dispatchEvent(new Event("planet_resize"));
 });
 // Create Sun Image
 const sun = new Image();
