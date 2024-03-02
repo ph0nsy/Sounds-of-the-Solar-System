@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sounds of the Solar System</title>
-    <link rel="icon" href="./assets/Solar_System_Sounds_Icon.ico" type="image/x-icon"/>
+    <link rel="icon" href="./assets/Solar_System_Sounds_Icon.ico" type="image/x-icon" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -257,21 +257,17 @@
         [24.50, 49.00, 98.00, 196.0, 392.0, 784.0, 1568, 3136, 6272], // G_n (Jupiter)
         [27.50, 55.00, 110.0, 220.0, 440.0, 880.0, 1760, 3520, 7040], // A_n (Saturn)
         [30.87, 61.74, 123.5, 246.9, 493.9, 987.8, 1976, 3951, 7902], // B_n (Uranus)
-        [32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186, 16.35]  // C_n+1 (Neptune)
-      ] 
+        [32.70, 65.41, 130.8, 261.6, 523.3, 1047, 2093, 4186, 16.35] // C_n+1 (Neptune)
+      ]
       const planetsId = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
       const planetsImg = ["./assets/planets/Mercury.png", "./assets/planets/Venus.png", "./assets/planets/Earth.png", "./assets/planets/Mars.png", "./assets/planets/Jupiter.png", "./assets/planets/Saturn.png", "./assets/planets/Uranus.png", "./assets/planets/Neptune.png"];
       const planetsSize = [0.015, 0.02, 0.025, 0.025, 0.055, 0.055, 0.04, 0.04];
-
       const today = new Date();
       const formatedToday = today.getFullYear() + '-' + (today.getMonth() < 9 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)) + '-' + (today.getDate() < 10 ? '0' + today.getDate() : today.getDate());
-      
       let planetsData;
-
       document.addEventListener("loadedJSON", function() {
-         console.log(planetsData);
+        console.log(planetsData);
       });
-
       $.ajax({
         type: "Get",
         url: "./assets/data/2024_planets_octants.json",
@@ -290,16 +286,13 @@
             img.src = planetsImg[i];
             x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i);
             y = 0;
-            x_ = (x * Math.cos(-20 * (pi/180) + (planetsData[formatedToday][i] * -40 * (pi/180)))) - (y * Math.sin(-20 * (pi/180) + (planetsData[formatedToday][i] * -40 * (pi/180)))) + width / 2;
-            y_ = (y * Math.cos(-20 * (pi/180) + (planetsData[formatedToday][i] * -40 * (pi/180)))) + (x * Math.sin(-20 * (pi/180) + (planetsData[formatedToday][i] * -40 * (pi/180)))) + height / 2;
-            sidePlanet = Math.round((ctx.canvas.height<ctx.canvas.width ? ctx.canvas.height:ctx.canvas.width)*planetsSize[i]*10)/10;
-      
-            console.log("Resize: (" + x + ", " + y_ + ")");
-
+            x_ = (x * Math.cos(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) - (y * Math.sin(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) + width / 2;
+            y_ = (y * Math.cos(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) + (x * Math.sin(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) + height / 2;
+            sidePlanet = Math.round((ctx.canvas.height < ctx.canvas.width ? ctx.canvas.height : ctx.canvas.width) * planetsSize[i] * 10) / 10;
             if (i != 5) {
               ctx.drawImage(img, x_ - (sidePlanet / 2), y_ - (sidePlanet / 2), sidePlanet, sidePlanet);
             } else {
-               ctx.drawImage(img, x_ - (sidePlanet * 0.75), y_ - (sidePlanet / 2), sidePlanet * 1.5, sidePlanet);
+              ctx.drawImage(img, x_ - (sidePlanet * 0.75), y_ - (sidePlanet / 2), sidePlanet * 1.5, sidePlanet);
             }
           }
           document.dispatchEvent(new Event("loadedJSON"));
@@ -308,30 +301,28 @@
           console.log("json not found");
         }
       });
-
       window.addEventListener('resize', () => {
-            for(var i; i < planetsId.length; i++){
-            const img = new Image();
-            img.src = planetsImg[i];
-            const c = document.getElementById("planets");
-            const ctx = c.getContext("2d");
-            width = ctx.canvas.width;
-            height = ctx.canvas.height;
-            x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i) - (width / 2);
-            y = 0;
-            x_ = (x * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) - (y * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + width / 2;
-            y_ = (y * Math.cos(27.5 + (planetsData[formatedToday][i] * 45))) + (x * Math.sin(27.5 + (planetsData[formatedToday][i] * 45))) + height / 2;
-            sidePlanet = Math.round((ctx.canvas.height<ctx.canvas.width ? ctx.canvas.height:ctx.canvas.width)*planetsSize[i]*10)/10;
-
-            if(i != 5){
-               ctx.drawImage(img, x_ - (planetsSize[i] / 2), y_ - (planetsSize[i] / 2), planetsSize[i], planetsSize[i]);
-            } else {
-               ctx.drawImage(img, x_ - (planetsSize[i] * 0.75), y_ - (planetsSize[i] / 2), planetsSize[i] * 1.5, planetsSize[i]);
-            }
-            console.log("Resize: (" + x_ + ", " + y_ + ")");
-         }
+        console.log("Hanlo")
+        for (var i; i < planetsId.length; i++) {
+          const img = new Image();
+          img.src = planetsImg[i];
+          const c = document.getElementById("planets");
+          const ctx = c.getContext("2d");
+          width = ctx.canvas.width;
+          height = ctx.canvas.height;
+          x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i) - (width / 2);
+          y = 0;
+          x_ = (x * Math.cos(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) - (y * Math.sin(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) + width / 2;
+          y_ = (y * Math.cos(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) + (x * Math.sin(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) + height / 2;
+          sidePlanet = Math.round((ctx.canvas.height < ctx.canvas.width ? ctx.canvas.height : ctx.canvas.width) * planetsSize[i] * 10) / 10;
+          if (i != 5) {
+            ctx.drawImage(img, x_ - (planetsSize[i] / 2), y_ - (planetsSize[i] / 2), planetsSize[i], planetsSize[i]);
+          } else {
+            ctx.drawImage(img, x_ - (planetsSize[i] * 0.75), y_ - (planetsSize[i] / 2), planetsSize[i] * 1.5, planetsSize[i]);
+          }
+          console.log("Resize: (" + x_ + ", " + y_ + ")");
+        }
       });
-      
       var context = new AudioContext();
       var o = null;
       var g = null;
