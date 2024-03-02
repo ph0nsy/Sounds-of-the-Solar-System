@@ -292,8 +292,8 @@
             y = 0;
             //x_ = (x * Math.cos(27.5 * (pi/180) + (planetsData[formatedToday][i] * 45 * (pi/180)))) - (y * Math.sin(27.5 * (pi/180) + (planetsData[formatedToday][i] * 45 * (pi/180)))) + width;
             //y_ = (y * Math.cos(27.5 * (pi/180) + (planetsData[formatedToday][i] * 45 * (pi/180)))) + (x * Math.sin(27.5 * (pi/180) + (planetsData[formatedToday][i] * 45 * (pi/180)))) + height / 2;
-            x_ = (x * Math.cos(-20 * (pi/180) + (1 * 40 * (pi/180)))) - (y * Math.sin(-20 * (pi/180) + (1 * 40 * (pi/180)))) + width / 2;
-            y_ = (y * Math.cos(-20 * (pi/180) + (1 * 40 * (pi/180)))) + (x * Math.sin(-20 * (pi/180) + (1 * 40 * (pi/180)))) + height / 2;
+            x_ = (x * Math.cos(-20 * (pi/180) + (1 * -40 * (pi/180)))) - (y * Math.sin(-20 * (pi/180) + (1 * -40 * (pi/180)))) + width / 2;
+            y_ = (y * Math.cos(-20 * (pi/180) + (1 * -40 * (pi/180)))) + (x * Math.sin(-20 * (pi/180) + (1 * -40 * (pi/180)))) + height / 2;
             sidePlanet = Math.round((ctx.canvas.height<ctx.canvas.width ? ctx.canvas.height:ctx.canvas.width)*planetsSize[i]*10)/10;
       
             console.log("Resize: (" + x + ", " + y_ + ")");
