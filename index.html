@@ -260,7 +260,7 @@
       ] 
       const planetsId = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
       const planetsImg = ["./assets/planets/Mercury.png", "./assets/planets/Venus.png", "./assets/planets/Earth.png", "./assets/planets/Mars.png", "./assets/planets/Jupiter.png", "./assets/planets/Saturn.png", "./assets/planets/Uranus.png", "./assets/planets/Neptune.png"];
-      const planetsSize = [16, 24, 32, 32, 56, 64, 48, 48];
+      const planetsSize = [16, 24, 32, 32, 52, 60, 44, 44];
 
       const today = new Date();
       const formatedToday = today.getFullYear() + '-' + (today.getMonth() < 9 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)) + '-' + (today.getDate() < 10 ? '0' + today.getDate() : today.getDate());
@@ -327,7 +327,7 @@
             if (i != 5) {
               ctx.drawImage(img, x_ - (planetsSize[i] / 2), y_ - (planetsSize[i] / 2), planetsSize[i], planetsSize[i]);
             } else {
-              ctx.drawImage(img, x_ - planetsSize[i], y_ - (planetsSize[i] / 2), planetsSize[i] * 2, planetsSize[i]);
+               ctx.drawImage(img, x_ - (planetsSize[i] * 0.75), y_ - (planetsSize[i] / 2), planetsSize[i] * 1.5, planetsSize[i]);
             }
           }
           document.dispatchEvent(new Event("loadedJSON"));
