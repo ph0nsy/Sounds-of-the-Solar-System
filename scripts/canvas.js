@@ -8,6 +8,7 @@ window.addEventListener('resize', () => {
     ctx.canvas.height = window.innerHeight*0.8/1.5;
     drawBackground();
 });
+// Create Sun Image
 const sun = new Image();
 sun.src = "./assets/Solar_System_Sounds_Logo.png";
 // Background
@@ -35,9 +36,8 @@ function drawBackground(){
         ctx.stroke();
     }
     // Place Sun
-    sideSun = (ctx.canvas.height<c.width ? ctx.canvas.height:ctx.canvas.width)*0.1;
+    sideSun = Math.round((ctx.canvas.height<ctx.canvas.width ? ctx.canvas.height:ctx.canvas.width)*0.08*10)/10;
     ctx.drawImage(sun, (ctx.canvas.width/2) - (sideSun/2), (ctx.canvas.height/2) - (sideSun/2), sideSun, sideSun);
-    console.log("Resize: (" + (ctx.canvas.width/2) - (sideSun/2) + ", " + (ctx.canvas.height/2) - (sideSun/2) + ")");
     // 8 Lines
     /*var xy = [[0,0],[c.width/2,0],[0,c.height/2],[0,c.height]];
     ctx.lineWidth = 0.75;
