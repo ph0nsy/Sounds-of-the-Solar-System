@@ -312,8 +312,8 @@
           img.src = planetsImg[i];
           x = ((height < width ? height : width) * .06 * (i + 1)) + (i < 4 ? 0 : i);
           y = 0;
-          x_ = (x * Math.cos(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) - (y * Math.sin(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) + width / 2;
-          y_ = (y * Math.cos(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) + (x * Math.sin(-20 * (pi / 180) + (planetsData[formatedToday][i] * -40 * (pi / 180)))) + height / 2;
+          x_ = (x * Math.cos(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) - (y * Math.sin(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) + width / 2;
+          y_ = (y * Math.cos(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) + (x * Math.sin(-20 * (pi / 180) + (0 * -40 * (pi / 180)))) + height / 2;
           sidePlanet = Math.round((ctx.canvas.height < ctx.canvas.width ? ctx.canvas.height : ctx.canvas.width) * planetsSize[i] * 10) / 10;
           console.log("Position: (" + x + ", " + y + ") - Side:" + sidePlanet);
           if (i != 5) {
