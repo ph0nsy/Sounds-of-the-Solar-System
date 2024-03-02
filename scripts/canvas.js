@@ -2,7 +2,7 @@
 const c = document.getElementById("planets");
 const ctx = c.getContext("2d");
 ctx.canvas.width  = window.innerWidth*0.8;
-ctx.canvas.height = window.innerHeight*0.8/1.5;
+ctx.canvas.height = window.innerHeight*0.9/1.5;
 window.addEventListener('resize', () => {
     ctx.canvas.width  = window.innerWidth*0.8;
     ctx.canvas.height = window.innerHeight*0.8/1.5;
