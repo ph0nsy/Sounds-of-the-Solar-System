@@ -8,6 +8,8 @@ window.addEventListener('resize', () => {
     ctx.canvas.height = window.innerHeight*0.8/1.5;
     drawBackground();
 });
+const sun = new Image();
+sun.src = "./assets/Solar_System_Sounds_Logo.png";
 // Background
 function drawBackground(){
     // Create gradient
@@ -33,10 +35,9 @@ function drawBackground(){
         ctx.stroke();
     }
     // Place Sun
-    const img = new Image();
-    img.src = "./assets/Solar_System_Sounds_Logo.png";
     sideSun = (ctx.canvas.height<c.width ? ctx.canvas.height:ctx.canvas.width)*0.1;
-    ctx.drawImage(img, (ctx.canvas.width/2) - (sideSun/2), (ctx.canvas.height/2) - (sideSun/2), sideSun, sideSun);
+    ctx.drawImage(sun, (ctx.canvas.width/2) - (sideSun/2), (ctx.canvas.height/2) - (sideSun/2), sideSun, sideSun);
+    console.log("Resize: (" + (ctx.canvas.width/2) - (sideSun/2) + ", " + (ctx.canvas.height/2) - (sideSun/2) + ")");
     // 8 Lines
     /*var xy = [[0,0],[c.width/2,0],[0,c.height/2],[0,c.height]];
     ctx.lineWidth = 0.75;
