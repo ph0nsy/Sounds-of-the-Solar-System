@@ -34,7 +34,7 @@ function drawBackground(){
     }
     // Place Sun
     const img = new Image();
-    img.src = "../assets/Solar_System_Sounds_Logo.png";
+    img.src = "./assets/Solar_System_Sounds_Logo.png";
     ctx.drawImage(img, (ctx.canvas.width/2) - 32, (ctx.canvas.height/2) - 32, 64, 64);
     // 8 Lines
     /*var xy = [[0,0],[c.width/2,0],[0,c.height/2],[0,c.height]];
