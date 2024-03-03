@@ -11,7 +11,7 @@ const notes = [
 ]
 const planetsId = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
 const planetsImg = ["./assets/planets/Mercury.png", "./assets/planets/Venus.png", "./assets/planets/Earth.png", "./assets/planets/Mars.png", "./assets/planets/Jupiter.png", "./assets/planets/Saturn.png", "./assets/planets/Uranus.png", "./assets/planets/Neptune.png"];
-const planetsSize = [0.015, 0.02, 0.025, 0.025, 0.055, 0.055, 0.04, 0.04];
+const planetsSize = [0.02, 0.025, 0.03, 0.03, 0.055, 0.055, 0.04, 0.04];
 const today = new Date();
 const formatedToday = today.getFullYear() + '-' + (today.getMonth() < 9 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)) + '-' + (today.getDate() < 10 ? '0' + today.getDate() : today.getDate());
 let planetsData;
