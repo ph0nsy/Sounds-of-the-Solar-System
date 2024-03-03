@@ -2,12 +2,16 @@
 const c = document.getElementById("planets");
 const ctx = c.getContext("2d");
 ctx.canvas.width  = window.innerWidth*0.8;
-ctx.canvas.height = window.innerHeight*0.8/1.5;
+ctx.canvas.height = window.innerHeight*0.9/1.5;
 window.addEventListener('resize', () => {
     ctx.canvas.width  = window.innerWidth*0.8;
     ctx.canvas.height = window.innerHeight*0.8/1.5;
     drawBackground();
+    window.dispatchEvent(new Event("planet_resize"));
 });
+// Create Sun Image
+const sun = new Image();
+sun.src = "./assets/Solar_System_Sounds_Logo.png";
 // Background
 function drawBackground(){
     // Create gradient
@@ -32,8 +36,11 @@ function drawBackground(){
         ctx.arc(c.width/2, c.height/2, ((c.height<c.width ? c.height:c.width)*.06*(i+1)) + (i<4 ? 0:i) , 0, 2 * Math.PI);
         ctx.stroke();
     }
-    // Lines
-    var xy = [[0,0],[c.width/2,0],[0,c.height/2],[0,c.height]];
+    // Place Sun
+    sideSun = Math.round((ctx.canvas.height<ctx.canvas.width ? ctx.canvas.height:ctx.canvas.width)*0.08*10)/10;
+    ctx.drawImage(sun, (ctx.canvas.width/2) - (sideSun/2), (ctx.canvas.height/2) - (sideSun/2), sideSun, sideSun);
+    // 8 Lines
+    /*var xy = [[0,0],[c.width/2,0],[0,c.height/2],[0,c.height]];
     ctx.lineWidth = 0.75;
     ctx.strokeStyle = "black";
     for(var i = 0; i < 4; i++){
@@ -43,7 +50,7 @@ function drawBackground(){
         ctx.lineTo((c.width-xy[i][0]), (c.height-xy[i][1]));
         // Draw the Path
         ctx.stroke();
-    }
+    }*/
 }
 drawBackground();
 
