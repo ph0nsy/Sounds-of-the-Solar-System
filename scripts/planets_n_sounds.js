@@ -115,6 +115,9 @@ function playNote(frequency, type) {
 
 function playPlanet(planetIdx) {
   playNote(notes[planetIdx][planetsData[formatedToday][planetIdx]], 'sine');
+  playNote(notes[planetIdx][planetsData[formatedToday][planetIdx]], 'square');
+  playNote(notes[planetIdx][planetsData[formatedToday][planetIdx]], 'triangle');
+  playNote(notes[planetIdx][planetsData[formatedToday][planetIdx]], 'sawtooth');
 }
 
 function playAllPlanets() {
@@ -138,4 +141,7 @@ function playAllPlanets() {
   }
   averageNote = (noteDifferences.reduce((a, b) => a + b, 0) / noteDifferences.length) || 0;
   playNote(averageNote, 'sine'); // Play combination tone (average difference between tones)
+  playNote(averageNote, 'square');
+  playNote(averageNote, 'triangle');
+  playNote(averageNote, 'sawtooth');
 }
