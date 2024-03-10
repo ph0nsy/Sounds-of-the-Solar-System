@@ -37,9 +37,21 @@
         background-blend-mode: multiply;
       }
       
+      .jumbotron{
+        background-image: url('./assets/Solar_System_Sonuds_Banner.png');
+        background-color: rgba(0, 0, 0, 0.8);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 625px;
+      }
+
       @media only screen and (max-width: 1020px) {
         .cond-pl {
           padding-left: 50px;
+        }
+        .jumbotron{
+          height: 425px;
         }
       }
     </style>
@@ -75,14 +87,7 @@
     <div data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
       <div class="p-3" style="background-image: linear-gradient(#070F2A, #18122B);">
         <!-- Background image -->
-        <div class="p-5 text-center bg-image rounded-3" style="
-               background-image: url('./assets/Solar_System_Sonuds_Banner.png');
-               background-color: rgba(0, 0, 0, 0.8);
-               background-size: cover;
-               background-repeat: no-repeat;
-               background-position: center;
-               height: 625px;
-               ">
+        <div class="p-5 text-center bg-image rounded-3 jumbotron">
           <div class="d-flex justify-content-center align-items-center h-100">
             <div class="text-white">
               <img src=".\assets\Solar_System_Sounds_Logo.png" width=200>
