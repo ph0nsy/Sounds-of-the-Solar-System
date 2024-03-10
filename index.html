@@ -27,6 +27,14 @@
         padding-left: 0px;
       }
 
+      .stars{
+        background-image: url(https://clipart.info/images/ccovers/1495916688stars-png-with-transparent-background.png);        
+        background-attachment: fixed;
+        background-repeat: repeat;
+        background-position: top center;
+        background-size: initial;
+      }
+      
       @media only screen and (max-width: 1020px) {
         .cond-pl {
           padding-left: 50px;
@@ -61,6 +69,7 @@
         </div>
       </nav>
     </header>
+    <div class="stars">
     <div data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
       <div class="p-3" style="background-image: linear-gradient(#070F2A, #18122B);">
         <!-- Background image -->
@@ -94,7 +103,7 @@
           <p>Ever wondered what the Solar System sounds like? Well, wonder no more! We've tuned in to the celestial radio waves to bring you a cosmic auditory experience. Each planet in our celestial orchestra represents a unique note, and their positions in the  Solar System translate into the perfect pitch, following the Scientific pitch notation.</p>
           <p>Here you can check planetary positions and experience the celestial harmony. <b>Click on any of the planets bellow to check what music they are playing today!</b></p>
         </div>
-        <div style="width: 100%; background-image: linear-gradient(#18122B, #070F2A, #18122B);">
+        <div style="width: 100%; background-image: radial-gradient(#070f2a,#18122b00)">
           <canvas id="planets" style="display: block; margin-left: auto; margin-right: auto; width: 80%; height: 100%; border: solid black; border-radius: 12px;"></canvas>
         </div>
         <br>
@@ -211,6 +220,7 @@
         </p>  
       </div>
     </div>
+    <div style="background-image: linear-gradient(#150f29f6 20%,#18122bf6);">
     <div class="container">
       <footer class="py-3 my-3"> <!--my-4">-->
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
@@ -250,6 +260,8 @@
         </p>
       </footer>
     </div>
+    </div>
+  </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./scripts/canvas.js"></script>
     <script src="./scripts/planets_n_sounds.js"></script>

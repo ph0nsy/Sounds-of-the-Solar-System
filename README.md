@@ -15,3 +15,10 @@ This Outer Wilds-inspired planetary music website employs Astropy's *astroquery*
 **This website employs the following technologies**:
 
 <p align="center"> <img src="https://skillicons.dev/icons?i=html,css,bootstrap,js,py&perline=5" /> </p>
+
+**Useful sites & references**:
+
++ Simulating a real solar system with 70 lines of Python code - ChongChong He <a href="https://medium.com/analytics-vidhya/simulating-the-solar-system-with-under-100-lines-of-python-code-5c53b3039fc6">🔗</a>
++ Play Musical Notes with JavaScript - Youths Forum <a href="https://youthsforum.com/programming/javascript/play-musical-notes-with-javascript/">🔗</a>
++ HTML References - W3schools <a href="https://www.w3schools.com/tags/default.asp">🔗</a>
++ Bootstrap 5.3 Docs <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">🔗</a>
